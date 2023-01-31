@@ -1,0 +1,17 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+    <form action="/buscar" class="form-inline my-2 my-lg-0" method="GET">
+        <input type="search" class="form-control mr-sm-2" name="search" id="search" placeholder="Buscador de juegos">
+        <button type="submit" class="btn btn-dark my-2 my-sm-0">Buscar</button>
+    </form>
+
+    <h3>{{ error }}</h3>
+    <div class="list-group">
+        {% for juego in juegos %}
+            <a href="/juegos/{{ juego.id }}" class="list-group-item list-group-item-action list-group-item-secondary">{{ juego.nombre }}</a>
+        {% endfor %}
+    </div>
+{% endblock %}

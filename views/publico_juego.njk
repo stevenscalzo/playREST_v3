@@ -1,0 +1,25 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Juego{% endblock %}
+
+{% block contenido %}
+    <div class="card">
+        <div class="card-header">
+            <h5>Ficha de juego</h5> <br>
+            <img src="/{{ juego.imagen }}" alt=""><br><br>
+            <span><strong>Nombre:</strong> {{ juego.nombre }}</span> <br>
+            <span><strong>Descripcion:</strong> {{ juego.descripcion }}</span> <br>
+            <span><strong>Precio:</strong> {{ juego.precio }}</span> <br>
+
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Ediciones del juego</h5> <br>
+            {% for edicion in juego.Ediciones %}
+                <div>
+                    <span><strong>Nombre:</strong> {{ edicion.edicion }}</span> <br>
+                    <span><strong>Año:</strong> {{ edicion.anyo }}</span> <br>
+                </div>  
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

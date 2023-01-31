@@ -1,0 +1,52 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Adminitrador{% endblock %}
+
+{% block contenido %}
+    <h1>Editar juego </h1>
+    {% if juego|length %}
+        <a href="ediciones/{{ juego.id }}" class="btn btn-dark btn-lg" role="button">Administrar ediciones</a>
+        <form action="/juegos/editar/{{ juego.id }}" method="POST" enctype="multipart/form-data">
+    {% else %}
+        <form action="/juegos" method="POST" enctype="multipart/form-data">
+    {% endif %}
+    
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" required class="form-control" value="{{ juego.nombre }}" id="nombre" name="nombre" placeholder="Nombre">
+        </div>
+        <div class="form-group">
+            <label for="edad">Edad</label>
+            <input type="number" required min="1" class="form-control" value="{{ juego.edad }}" id="edad" name="edad" placeholder="edad">
+        </div>
+        <div class="form-group">
+            <label for="jugadores">Jugadores</label>
+            <input type="number" required min="1" class="form-control" value="{{ juego.jugadores }}" id="jugadores" name="jugadores" placeholder="jugadores">
+        </div>
+        <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <select class="form-control" id="tipo" name="tipo" placeholder="tipo">
+                <option {% if juego.tipo == "rol" %} selected="selected" {% endif %} >rol</option>
+                <option {% if juego.tipo == "escape" %} selected="selected" {% endif %} >escape</option>
+                <option {% if juego.tipo == "dados" %} selected="selected" {% endif %} >dados</option>
+                <option {% if juego.tipo == "fichas" %} selected="selected" {% endif %} >fichas</option>
+                <option {% if juego.tipo == "cartas" %} selected="selected" {% endif %} >cartas</option>
+                <option {% if juego.tipo == "tablero" %} selected="selected" {% endif %} >tablero</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="precio">Precio</label>
+            <input type="number" min="1" required class="form-control" value="{{ juego.precio }}" id="precio" name="precio" placeholder="precio">
+        </div>
+           <div class="form-group">
+            <label for="imagen">Imagen</label>
+            <input type="file" class="form-control" id="imagen" name="imagen">
+        </div>
+           <div class="form-group">
+            <label for="descripcion">Descripcion</label>
+            <textarea class="form-control" required id="descripcion" name="descripcion" rows="3">{{ juego.descripcion }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-dark">Guardar</button>
+    </form>
+{% endblock %}

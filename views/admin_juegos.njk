@@ -1,0 +1,22 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Adminitrador{% endblock %}
+
+{% block contenido %}
+    <h1>Listado de juegos</h1>
+    <a href="/juegos/nuevo" class="btn btn-dark btn-lg">Nuevo</a><br><br>
+    <div class="list-group">
+        {% for juego in juegos %}
+            <div class="list-group-item list-group-item-action list-group-item-secondary">
+                <div class="d-flex">
+                    <div class="mr-auto p-2"><a href="/juegos/{{ juego.id }}" >{{ juego.nombre }}</a></div>
+                    <div class="p-2"><a href="juegos/editar/{{ juego.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
+                    
+                    <form action="/juegos/borrar/{{ juego.id }}" method="POST">
+                        <button type="submit" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
